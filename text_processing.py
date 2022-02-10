@@ -2,7 +2,7 @@ from typing import Dict, List, Optional, Tuple
 from itertools import groupby
 import random
 import nltk
-nltk.download('stopwords')
+# nltk.download('stopwords')
 
 from nltk.tokenize.treebank import TreebankWordDetokenizer
 from nltk.corpus import stopwords
@@ -34,9 +34,6 @@ def deplicate_sequential_words(tokens: List[str], word_list: List[str]) -> List[
         previous = token
     return final_tokens
 
-s = 'Since Gordon loved fantasy, he was watching Avatar when his mother came in and shot him.'
-name = "Gordon Ramsey"
-
 def transform_sentence_to_second_person(sentence: str, name: str = ""):
     pronouns = {
         "she": "you",
@@ -65,4 +62,7 @@ def transform_sentence_to_second_person(sentence: str, name: str = ""):
 
     return TreebankWordDetokenizer().detokenize(tokens).capitalize()
 
-print(transform_sentence_to_second_person(s, name))
+if __name__ == "__main__":
+    s = 'Since Gordon loved fantasy, he was watching Avatar when his mother came in and shot him.'
+    name = "Gordon Ramsey"
+    print(transform_sentence_to_second_person(s, name))

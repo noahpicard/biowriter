@@ -1,5 +1,6 @@
 from typing import Dict, List, Optional
 from text_processing import select_bio_sentence_using_word, transform_sentence_to_second_person, is_in_stopwords
+from scraper_util import parse_bio_from_url, URL
 
 BioDict = Dict[str, List[str]]
 
@@ -23,16 +24,16 @@ def get_next_sentence(bios: BioDict, sentence_index: int, input_word: str) -> Op
         sentence, name = select_bio_sentence_using_word(sentences_at_index, input_word)
         return transform_sentence_to_second_person(sentence, name)
     except Exception as e:
-        print(e)
         return None
 
 def get_max_sentence_count(bios: BioDict) -> int:
     return max([len(sentences) for sentences in bios.values()])
 
 def main():
-    # TODO: get bios and sentences here
-
     bios: BioDict = example_bios
+
+    name, sentences = parse_bio_from_url(URL)
+    bios = {name: sentences}
 
     print("A STORY OF YOU:")
     print("Instructions: At each >>, please enter a word and press ENTER.")
@@ -57,7 +58,7 @@ def main():
             words_entered.append(input_word)
 
 
-    print("Then you died.")
+    print("\"Then you died.\"")
     print(".")
     print(".")
     print(".")
