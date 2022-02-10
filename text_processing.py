@@ -41,10 +41,13 @@ def transform_sentence_to_second_person(sentence: str, name: str = ""):
         "he": "you",
         "him": "you",
         "his": "your",
+        "himself": "yourself",
+        "herself": "yourself",
     }
     verbs = {
         "was": "were",
-        "is": "are"
+        "is": "are",
+        "has": "have",
     }
     names = {name_part: "you" for name_part in name.split()}
 
