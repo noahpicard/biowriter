@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import nltk
 import re
+# nltk.download('punkt')
 
 URL = "https://en.wikipedia.org/wiki/Holly_Willoughby"
 TOKENIZER = nltk.data.load('tokenizers/punkt/english.pickle')
