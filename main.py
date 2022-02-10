@@ -1,6 +1,8 @@
 from typing import Dict, List, Optional
 from text_processing import select_bio_sentence_using_word, transform_sentence_to_second_person, is_in_stopwords
 from scraper_util import parse_bio_from_url, URL
+from generate_bio_map import get_bio_urls_for_today
+from generate_bio_map import generate_bio_map
 
 BioDict = Dict[str, List[str]]
 
@@ -32,8 +34,12 @@ def get_max_sentence_count(bios: BioDict) -> int:
 def main():
     bios: BioDict = example_bios
 
-    name, sentences = parse_bio_from_url(URL)
-    bios = {name: sentences}
+    # name, sentences = parse_bio_from_url(URL)
+    # if we have a file for today's date, parse and use that
+    # TODO
+    # else
+    bios = generate_bio_map(get_bio_urls_for_today())
+    # TODO: upload bios to file to store for subsequent runs
 
     print("A STORY OF YOU:")
     print("Instructions: At each >>, please enter a word and press ENTER.")
